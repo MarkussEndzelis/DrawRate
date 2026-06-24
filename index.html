@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Draw Rate</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="startScreen">
+            <div class="game-title">Draw Rate</div>
+            <div class="game-subtitle">Draw it. Get judged. Cry a little.</div>
+            <div class="rules">
+                <h3>How it works</h3>
+                <ul>
+                    <li>You get a random word</li>
+                    <li>60 seconds to draw it</li>
+                    <li>Your drawing gets rated</li>
+                    <li>5 rounds, best score wins</li>
+                </ul>
+            </div>
+            <button class="btn-primary" onClick="startGame()">Start Drawing</button>
+        </div>
+
+        <div id="gameScreen" class="hidden">
+            <div class="game-header">
+                <div class="round-badge">Round <span id="roundNum">1</span> / <span id="totalRounds">5</span></div>
+                <div class="word-area">
+                    <div class="word-label">Draw this:</div>
+                    <div id="wordDisplay">cat</div>
+                </div>
+                <div id="timer">60</div>
+            </div>
+
+            <div class="canvas-container">
+                <canvas id="drawCanvas" width="700" height="420"></canvas>
+            </div>
+
+            <div class="toolBar">
+                <button class="tool-btn active" id="penBtn" onClick="setTool('pen')">Pen</button>
+                <button class="tool-btn" id="eraserBtn" onClick="setTool('eraser')">Eraser</button>
+                <button class="tool-btn" onClick="clearCanvas(); initCanvas()">Clear</button>
+                <div class="spacer"></div>
+                <button class="btn-submit" id="submitBtn" onClick="submitDrawing()">Submit</button>
+            </div>
+
+            <div id="roundResult" class="hidden">
+                <div class="score-num" id="roundScore">0%</div>
+                <div id="roundComment">...</div>
+                <button class="btn-next" id="nextbtn">Next</button>
+            </div>
+        </div>
+
+        <div id="resultScreen" class="hidden">
+            <div class="final-title">Your average score</div>
+            <span class="final-score-num" id="finalScore">0%</span>
+            <div id="finalComment"></div>
+            <button class="btn-primary" onClick="startGame()">Play Again</button>
+        </div>
+
+        <script src="js/words.js"></script>
+        <script src="js/canvas.js"></script>
+        <script src="js/timer.js"></script>
+        <script src="js/rater.js"></script>
+        <script src="js/main.js"></script>
+
+    </body>
+</html>
