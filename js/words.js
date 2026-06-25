@@ -18,7 +18,7 @@ const WORDS = [
     {word: 'castle', complexity: 'medium'},
     {word: 'volcano', complexity: 'medium'},
     {word: 'rocket', complexity: 'medium'},
-    {word: 'cactus', compelxity: 'medium'},
+    {word: 'cactus', complexity: 'medium'},
     {word: 'bridge', complexity: 'medium'},
 
     {word: 'rollercoaster', complexity: 'hard'},

@@ -47,11 +47,11 @@ function submitDrawing(){
 
     const scoreEl = document.getElementById('roundScore');
     scoreEl.textContent = score + '%';
-    scoreEl.className = 'score-num' + colorClass;
+    scoreEl.className = 'score-num ' + colorClass;
 
     document.getElementById('roundComment').textContent = comment;
 
-    const nextBtn = document.getElementById('nextBtn');
+    const nextBtn = document.getElementById('nextbtn');
     if(currentRound >= TOTAL_ROUNDS){
         nextBtn.textContent = 'See Results ->';
         nextBtn.onclick = showFinalScreen;

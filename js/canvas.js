@@ -78,7 +78,7 @@ function draw(e){
     if(!isDrawing){
         return;
     }
-    const pos = getPost(e);
+    const pos = getPos(e);
     drawLine(lastX, lastY, pos.x, pos.y);
     lastX = pos.x;
     lastY = pos.y;
@@ -106,7 +106,7 @@ function drawLine(x1, y1, x2, y2){
     pixelsFilled++;
 }
 
-function setTpol(tool){
+function setTool(tool){
     currentTool = tool;
     document.getElementById('penBtn').classList.toggle('active', tool === 'pen');
     document.getElementById('eraserBtn').classList.toggle('active', tool === 'eraser');
