@@ -92,7 +92,6 @@ function stopDraw(){
 function drawLine(x1, y1, x2, y2){
     if(currentTool === 'pen'){
         ctx.globalCompositeOperation = 'source-over';
-        ctx.lineWidth = 4;
     }else{
         ctx.globalCompositeOperation = 'destination-out';
         ctx.lineWidth = 24;
@@ -135,4 +134,8 @@ function setColor(color){
         btn.classList.toggle('active', btn.style.background === color);
     });
     colorsUsed.add(color);
+}
+
+function setBrushSize(size){
+    ctx.lineWidth = size;
 }

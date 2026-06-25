@@ -51,6 +51,7 @@
                     <button class="color-btn" style="background:#c77dff" onclick="setColor('#c77dff')" title="Purple"></button>
                     <button class="color-btn" style="background:#ffffff" style="border:2px solid #ccc" onclick="setColor('#ffffff')" title="White"></button>
                 </div>
+                <input type="range" id="brushSize" min="2" max="20" value="4" oninput="setBrushSize(this.value)">
             </div>
 
             <div id="roundResult" class="hidden">
