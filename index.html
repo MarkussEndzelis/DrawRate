@@ -42,6 +42,15 @@
                 <button class="tool-btn" onClick="clearCanvas(); initCanvas()">Clear</button>
                 <div class="spacer"></div>
                 <button class="btn-submit" id="submitBtn" onClick="submitDrawing()">Submit</button>
+                <div class="color-palette">
+                    <button class="color-btn active" style="background:#000000" onclick="setColor('#000000')" title="Black"></button>
+                    <button class="color-btn" style="background:#ff6b6b" onclick="setColor('#ff6b6b')" title="Red"></button>
+                    <button class="color-btn" style="background:#6bcb77" onclick="setColor('#6bcb77')" title="Green"></button>
+                    <button class="color-btn" style="background:#4d96ff" onclick="setColor('#4d96ff')" title="Blue"></button>
+                    <button class="color-btn" style="background:#ff9a3c" onclick="setColor('#ff9a3c')" title="Orange"></button>
+                    <button class="color-btn" style="background:#c77dff" onclick="setColor('#c77dff')" title="Purple"></button>
+                    <button class="color-btn" style="background:#ffffff" style="border:2px solid #ccc" onclick="setColor('#ffffff')" title="White"></button>
+                </div>
             </div>
 
             <div id="roundResult" class="hidden">

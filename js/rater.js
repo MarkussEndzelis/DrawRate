@@ -29,7 +29,7 @@ const COMMENTS = {
     ]
 };
 
-function rateDrawing(strokeCount, pixelsFilled, timeUsed, complexity){
+function rateDrawing(strokeCount, pixelsFilled, timeUsed, complexity, colorsUsed){
     let score = 0;
 
     if(strokeCount === 0){
@@ -41,6 +41,8 @@ function rateDrawing(strokeCount, pixelsFilled, timeUsed, complexity){
 
     const coverageScore = Math.min(pixelsFilled / 300, 1) * 30;
     score += coverageScore;
+    const colorBonus = Math.min((colorsUsed - 1) * 3, 15);
+    score+= colorBonus;
 
     const timeScore = Math.min(timeUsed / 45, 1) * 20;
     score += timeScore;

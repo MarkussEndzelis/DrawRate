@@ -33,14 +33,15 @@ function submitDrawing(){
     stopTimer();
     document.getElementById('submitBtn').disabled = true;
 
-    const {strokeCount, pixelsFilled} = getCanvasData();
+    const {strokeCount, pixelsFilled, colorsUsed} = getCanvasData();
     const timeUsed = getTimeUsed();
 
     const {score, comment, colorClass} = rateDrawing(
         strokeCount,
         pixelsFilled,
         timeUsed,
-        currentWord.complexity
+        currentWord.complexity,
+        colorsUsed
     );
 
     scores.push(score);

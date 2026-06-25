@@ -282,3 +282,23 @@ body {
     margin-bottom: 32px;
     line-height: 1.5;
 }
+
+.color-palette{
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.color-btn{
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    cursor: pointer;
+}
+
+.color-btn.active{
+    border-color: #fff;
+    transform: scale(1.2);
+}

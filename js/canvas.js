@@ -5,6 +5,7 @@ let lastX = 0;
 let lastY = 0;
 let strokeCount = 0;
 let pixelsFilled = 0;
+let colorsUsed = new Set();
 
 function initCanvas(){
     canvas = document.getElementById('drawCanvas');
@@ -91,7 +92,6 @@ function stopDraw(){
 function drawLine(x1, y1, x2, y2){
     if(currentTool === 'pen'){
         ctx.globalCompositeOperation = 'source-over';
-        ctx.strokeStyle = '#000000';
         ctx.lineWidth = 4;
     }else{
         ctx.globalCompositeOperation = 'destination-out';
@@ -118,12 +118,21 @@ function clearCanvas(){
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     strokeCount = 0;
     pixelsFilled = 0;
+    colorsUsed = new Set();
 }
 
 function getCanvasData(){
     return{
         imageData: canvas.toDataURL('image/png'),
         strokeCount,
-        pixelsFilled
+        pixelsFilled,
+        colorsUsed: colorsUsed.size
     };
+}
+function setColor(color){
+    ctx.strokeStyle = color;
+    document.querySelectorAll('.color-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.style.background === color);
+    });
+    colorsUsed.add(color);
 }
