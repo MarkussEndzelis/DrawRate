@@ -17,6 +17,7 @@ function nextRound(){
 
     currentWord = getRandomWord();
     document.getElementById('wordDisplay').textContent = currentWord.word;
+    document.getElementById('referenceImage').src = currentWord.refImage;
 
     document.getElementById('roundResult').classList.add('hidden');
     document.getElementById('submitBtn').disabled = false;
@@ -29,27 +30,48 @@ function nextRound(){
     });
 }
 
-function submitDrawing(){
+async function submitDrawing(){
     stopTimer();
     document.getElementById('submitBtn').disabled = true;
 
-    const {strokeCount, pixelsFilled, colorsUsed} = getCanvasData();
-    const timeUsed = getTimeUsed();
+    const {strokeCount, colorsUsed} = getCanvasData();
 
-    const {score, comment, colorClass} = rateDrawing(
-        strokeCount,
-        pixelsFilled,
-        timeUsed,
-        currentWord.complexity,
-        colorsUsed
-    );
+    const scoreEl = document.getElementById('roundScore');
+    scoreEl.textContent = '...';
+    scoreEl.className = 'score-num';
+    document.getElementById('roundComment').textContent = 'Scoring your drawing...';
+    document.getElementById('roundResult').classList.remove('hidden');
+
+    let score, comment;
+
+    try {
+        const refCanvas = await loadImageToCanvas(currentWord.refImage);
+        const refMask = getBinaryMask(refCanvas);
+        const drawMask = getBinaryMask(canvas);
+        const iou = compareMasks(refMask, drawMask);
+        const drawInkCount = drawMask.reduce((a, b) => a + b, 0);
+
+        score = Math.round(Math.min(99, Math.max(1, iou * 100)));
+
+        // Almost nothing drawn (a dot, a tiny scribble) = force near-zero score
+        if (drawInkCount < 5) {
+            score = Math.floor(Math.random() * 4) + 1; // 1-4%
+        } else if (drawInkCount < 12) {
+            score = Math.min(score, 10);
+        }
+
+        comment = score >= 75 ? "Great match!" : score >= 45 ? "Recognizable" : "Rough shape, keep trying!";
+    }catch(e){
+        console.error("Comparison error:", e);
+        score = Math.round(Math.min(99, Math.max(5, strokeCount * 3 + colorsUsed * 5)));
+        comment = "Backup scoring used."
+    }
 
     scores.push(score);
 
-    const scoreEl = document.getElementById('roundScore');
+    const colorClass = score >= 75 ? 'score-great' : score >= 50 ? 'score-ok' : score >= 25 ? 'score-meh' : 'score-bad';
     scoreEl.textContent = score + '%';
     scoreEl.className = 'score-num ' + colorClass;
-
     document.getElementById('roundComment').textContent = comment;
 
     const nextBtn = document.getElementById('nextbtn');
@@ -60,7 +82,6 @@ function submitDrawing(){
         nextBtn.textContent = 'Next Round ->';
         nextBtn.onclick = nextRound;
     }
-    document.getElementById('roundResult').classList.remove('hidden');
 }
 
 function showFinalScreen(){

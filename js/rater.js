@@ -36,7 +36,7 @@ function rateDrawing(strokeCount, pixelsFilled, timeUsed, complexity, colorsUsed
         return {score: 0, comment: "You didnt draw anything...", colorClass: 'score-bad'};
     }
 
-    const strokeScore = Math.min(strokeCount / 8, 1) * 35;
+    const strokeScore = Math.min(strokeCount / 15, 1) * 50;
     score += strokeScore;
 
     const coverageScore = Math.min(pixelsFilled / 300, 1) * 30;
@@ -53,9 +53,9 @@ function rateDrawing(strokeCount, pixelsFilled, timeUsed, complexity, colorsUsed
         score *= 0.9;
     }
 
-    score += (Math.random() * 20) - 10;
+    score += (Math.random() * 8) - 4;
 
-    score = Math.round(Math.max(5, Math.min(99, score)));
+    score = Math.round(Math.max(1, Math.min(99, score)));
 
     let comment, colorClass;
 
