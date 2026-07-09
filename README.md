@@ -10,7 +10,7 @@ DrawRate is a web browser drawing gmae. I made it because I thought it would be 
 - Drawing tools - pen, eraser, color paletter and bruhs size slider
 - Timer - 60 seconds to draw
 - Rating - rates your drawing based on strokes, converage and colors used
-- 5 rounds - random words every round with different difficulties
+- 5 rounds - random images every round with different difficulties
 
 ## How to play
 - Just draw whatever the word is
